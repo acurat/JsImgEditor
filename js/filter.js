@@ -11,8 +11,13 @@ var downloadlink = document.getElementById('downloadlink');
 downloadbtn.addEventListener('click', function() {
 	var canvas = document.getElementById('canvas');
     var url = canvas.toDataURL('image/png');
-    downloadlink.setAttribute('href', url);
-    downloadlink.click();
+    var link = document.createElement('a');
+    link.download = 'image';
+    link.href = url;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    delete link;
 });
 
 function draw(img) {
